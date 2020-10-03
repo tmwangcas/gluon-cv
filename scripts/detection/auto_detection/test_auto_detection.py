@@ -9,8 +9,8 @@ if __name__ == '__main__':
         'dataset': 'voc_tiny',
         'meta_arch': 'ssd',
         'lr': ag.Categorical(1e-3, 5e-4),
-        'epochs': 5,
-        'num_trials': 2
+        'epochs': 1,
+        'num_trials': 1
     }
 
     if 'meta_arch' in args:
@@ -33,4 +33,5 @@ if __name__ == '__main__':
     test_map = detector.evaluate()
     print("mAP on test dataset: {}".format(test_map[-1][-1]))
     print(test_map)
-    # detector.save('final_model.model')
+    detector.save('models/detector.pkl')
+    detector = ObjectDetection.load('models/detector.pkl')
